@@ -1,0 +1,34 @@
+<html>
+<body>
+    <input type="file" name="file" id="file" />
+ <script>
+      function teams()
+      {
+		  	document.getElementById('file').onchange = function()
+       {
+         //function to read text file
+         var file = this.files[0];
+         var reader = new FileReader();
+         reader.onload = function(progressEvent)
+         {
+           var v=this.result;
+           arr=v.split(",");//split the data in the text file
+          setInterval(()=>{let d = new Date()
+           let time=d.toLocaleTimeString();//to get the local time and converting into string
+           for(i=0;i<arr.length;i++)
+           {
+             var sub=arr[i].split("^");//again spliting the data in array 
+             if(time==sub[0])
+             {
+               window.open(sub[1]);//opens specified link in new tab
+             }
+           }
+           },500)//executes function for every 500 milliseconds    
+          }
+           reader.readAsText(file);
+    }
+}
+teams();
+</script>
+</body>
+</html>
